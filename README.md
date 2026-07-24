@@ -8,6 +8,12 @@ I'm also leaving two videos here that helped me a lot while setting everything u
 
 A big thank you to the creators of these videos for sharing such clear and helpful guides. Their work made the whole setup process much easier.
 
+Btw this configuration uses **Nerd Fonts** to display icons correctly. You can download them from the official repository:
+
+https://github.com/ryanoasis/nerd-fonts
+
+Many thanks to the Nerd Fonts project and all its contributors for creating and maintaining such an amazing collection of patched fonts.
+
 My result:
 
 <img width="1915" height="1032" alt="Captura de tela 2026-07-24 141240" src="https://github.com/user-attachments/assets/e92a094e-ef3b-4f34-afd5-04a06e322764" />

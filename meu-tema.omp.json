@@ -1,0 +1,126 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          /* =========================================================
+             1. ÍCONE DO SISTEMA (WINDOWS)
+             ========================================================= */
+          "background": "#89DCEB", /* <- COR DE FUNDO DO ÍCONE */
+          "foreground": "#11111b", /* <- COR DO ÍCONE EM SI */
+          "leading_diamond": "\ue0b6",
+          "style": "diamond",
+          "template": " {{ .Icon }} ",
+          "trailing_diamond": "\ue0b0",
+          "type": "os"
+        },
+        {
+          /* =========================================================
+             2. MODO ADMINISTRADOR (RAIO)
+             ========================================================= */
+          "background": "#FAB387", /* <- COR DE FUNDO DO RAIO */
+          "foreground": "#11111b", /* <- COR DO RAIO EM SI */
+          /* ATENÇÃO: Se mudar o background acima, mude o #DE2121 abaixo para a mesma cor */
+          "leading_diamond": "<transparent,#FAB387>\ue0b0</>", 
+          "style": "diamond",
+          "template": " \uf0e7 ",
+          "trailing_diamond": "\ue0b0",
+          "type": "root"
+        },
+        {
+          /* =========================================================
+             3. DIRETÓRIO / PASTAS (ÍCONE DA CASINHA E PASTA)
+             ========================================================= */
+          "background": "#FAB387", /* <- COR DE FUNDO DA PASTA */
+          "foreground": "#11111b", /* <- COR DO TEXTO E DOS ÍCONES DA PASTA */
+          /* ATENÇÃO: Se mudar o background acima, mude o #26BDBB abaixo para a mesma cor */
+          "leading_diamond": "<transparent,#FAB387>\ue0b0</>",
+          "options": {
+            "folder_icon": "...",
+            "folder_separator_icon": "<transparent> \ue0b1 </>",
+            "home_icon": "\ueb06",
+            "style": "agnoster_short"
+          },
+          "style": "diamond",
+          "template": " {{ .Path }} ",
+          "trailing_diamond": "\ue0b0",
+          "type": "path"
+        },
+        {
+          /* =========================================================
+             4. HISTÓRICO GIT (ÍCONES DE BRANCH, ALERTA, ETC.)
+             ========================================================= */
+          "background": "#A6E3A1", /* <- COR DE FUNDO PADRÃO (SEM ALTERAÇÕES NO GIT) */
+          "background_templates": [
+            /* As 4 linhas abaixo controlam a cor de fundo caso você altere algum arquivo no Git.
+               Substitua o #7621DE pela cor que você quer que pisque quando o Git estiver modificado */
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#7621DE{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#7621DE{{ end }}",
+            "{{ if gt .Ahead 0 }}#7621DE{{ end }}",
+            "{{ if gt .Behind 0 }}#7621DE{{ end }}"
+          ],
+          "foreground": "#11111b", /* <- COR DOS ÍCONES E TEXTOS DO GIT */
+          "powerline_symbol": "\ue0b0",
+          "options": {
+            "fetch_status": true,
+            "fetch_upstream_icon": true
+          },
+          "style": "powerline",
+          "template": " {{ .UpstreamIcon }}{{ .HEAD }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} ",
+          "type": "git"
+        },
+        {
+          /* =========================================================
+             5. RELÓGIO (ÍCONE DO RELÓGIO)
+             ========================================================= */
+          "background": "#F5C2E7", /* <- COR DE FUNDO DO RELÓGIO */
+          "foreground": "#11111b", /* <- COR DA HORA */
+          /* ATENÇÃO: Se mudar o background acima, mude o #0C212F abaixo para a mesma cor */
+          "leading_diamond": "<transparent,#F5C2E7>\ue0b0</>",
+          "options": {
+            "time_format": "15:04"
+          },
+          "style": "diamond",
+          "template": " {{ .CurrentDate | date .Format }} ",
+          "trailing_diamond": "\ue0b0",
+          "type": "time"
+        },
+        {
+          /* =========================================================
+             6. TEMPO DE EXECUÇÃO (AMPULHETA / SEGUNDOS)
+             ========================================================= */
+          "background": "#94E2D5", /* <- COR DE FUNDO DO TEMPO */
+          "foreground": "#11111b", /* <- COR DO TEXTO DOS SEGUNDOS */
+          /* ATENÇÃO: Se mudar o background acima, mude o #26BDBB abaixo para a mesma cor */
+          "leading_diamond": "<transparent,#94E2D5>\ue0b0</>",
+          "options": {
+            "style": "dallas",
+            "threshold": 0
+          },
+          "style": "diamond",
+          "template": " {{ .FormattedMs }}s ",
+          "trailing_diamond": "\ue0b0",
+          "type": "executiontime"
+        },
+        {
+          /* =========================================================
+             7. STATUS DE ERRO (ÍCONE DE EXCLAMAÇÃO)
+             ========================================================= */
+          "background": "#F38BA8", /* <- COR DE FUNDO CASO UM COMANDO DE ERRO */
+          "foreground": "#11111b", /* <- COR DO ÍCONE DE ERRO */
+          "leading_diamond": "<transparent,background>\ue0b0</>",
+          "style": "diamond",
+          "template": "<transparent> \uf12a</> {{ reason .Code }} ",
+          "trailing_diamond": "\ue0b0",
+          "type": "status"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "console_title_template": "{{if .Root}} \u26a1 {{end}}{{.Folder | replace \"~\" \"🏠\"}} @ {{.HostName}}",
+  "final_space": true,
+  "version": 4
+}
